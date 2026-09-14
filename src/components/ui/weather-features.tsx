@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence, animate, type Variants } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import {
@@ -1377,7 +1378,13 @@ export function WeatherFeatures() {
       <div className="mb-8 flex min-w-0 flex-wrap items-center justify-between gap-4">
         <div className="min-w-0">
           <h1 className="flex min-w-0 items-center gap-2.5 text-2xl font-semibold tracking-tight">
-            <CloudSun className="size-6 shrink-0 text-foreground" />
+            <Image
+              src="/logo.png"
+              alt="Tiempo logo"
+              width={28}
+              height={28}
+              className="size-7 shrink-0 rounded-md"
+            />
             <span className="truncate">{t("app.title")}</span>
           </h1>
           <p className="mt-1 min-w-0 truncate text-sm text-muted-foreground">
