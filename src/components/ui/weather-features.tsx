@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { useTheme } from "next-themes";
 import { motion, AnimatePresence, animate, type Variants } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import {
@@ -1294,8 +1293,6 @@ function geoErrorKey(code: number): ErrorKey {
 
 export function WeatherFeatures() {
   const { t } = useI18n();
-  const { resolvedTheme } = useTheme();
-  const logoSrc = resolvedTheme === "dark" ? "/logo.png" : "/logo2.png";
   const [coords, setCoords] = useState({
     lat: DEFAULT_LOCATION.lat,
     lon: DEFAULT_LOCATION.lon,
@@ -1382,11 +1379,18 @@ export function WeatherFeatures() {
         <div className="min-w-0">
           <h1 className="flex min-w-0 items-center gap-2.5 text-2xl font-semibold tracking-tight">
             <Image
-              src={logoSrc}
+              src="/logo.png"
               alt="Tiempo logo"
               width={28}
               height={28}
-              className="size-7 shrink-0 rounded-md"
+              className="size-7 hidden shrink-0 rounded-md dark:block"
+            />
+            <Image
+              src="/logo2.png"
+              alt="Tiempo logo"
+              width={28}
+              height={28}
+              className="size-7 block shrink-0 rounded-md dark:hidden"
             />
             <span className="truncate">{t("app.title")}</span>
           </h1>

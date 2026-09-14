@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { ThemeFavicon } from "@/components/theme-favicon";
@@ -33,6 +34,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <Script
+          id="theme-favicon"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem('theme');var d=(!t||t==='system')?(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):t;var h=(d==='dark'?'/logo.png':'/logo2.png');if(document.querySelector('link[rel~="icon"]')){document.querySelectorAll('link[rel~="icon"]').forEach(function(l){l.setAttribute('href',h)})}}catch(e){}`,
+          }}
+        />
         <Providers>
           <ThemeFavicon />
           {children}
